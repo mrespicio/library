@@ -49,29 +49,27 @@ btnAdd.addEventListener('click', () => {
     //     <td>${author}</td>
     // </tr>`;
     // tableBody.innerHTML += format;
-    
+
+    // let newRow = table.insertRow(0);
+    // let titleCell = newRow.insertCell(0);
+    // let authorCell = newRow.insertCell(1);
+    // titleCell.innerHTML = titleInput.value;
+    // authorCell.innerHTML = authorInput.value;
     // titleInput.value = '';
     // authorInput.value = '';
-    let newRow = table.insertRow(0);
 
+    let book = new Book(titleInput.value, authorInput.value);
+    console.log(book);
+
+    let newRow = table.insertRow(0);
     let titleCell = newRow.insertCell(0);
     let authorCell = newRow.insertCell(1);
-    titleCell.innerHTML = titleInput.value;
-    authorCell.innerHTML = authorInput.value;
+    titleCell.innerHTML = book.title;
+    authorCell.innerHTML = book.author;
     titleInput.value = '';
-    authorInput.value = ''
+    authorInput.value = '';
 });
 
-// iterate myLibrary
-// function to create format
-// append format to table
-
-{/* <td>${obj.pages}</td>
-<td>${obj.status}</td> */}
-// myLibrary.forEach(item => {
-//     let newRow = addRow(item);
-//     table.innerHTML += newRow;
-// });
 
 // function addRow(obj){
 //     let format = ` <tr>
