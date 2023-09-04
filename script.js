@@ -27,47 +27,33 @@ let gatsby = new Book('The Great Gatsby', 'F. Scott Fitzgerald', '208', 'Read');
 function addBook(name){
     myLibrary.unshift(name);
 }
+
 addBook(gatsby);
 addBook(cuckoo);
 addBook(fahrenheit);
 addBook(micenmen);
 
 let table = document.getElementById('table-body');
-console.log(table);
 
 let btnAdd = document.getElementById('add-btn');
 let titleInput = document.getElementById('title');
 let authorInput = document.getElementById('author');
 
-
-
 btnAdd.addEventListener('click', () => {
-    // let title = titleInput.value;
-    // let author = authorInput.value;
-    // let format = ` <tr>
-    //     <td scope="row">${title}</td>
-    //     <td>${author}</td>
-    // </tr>`;
-    // tableBody.innerHTML += format;
-
-    // let newRow = table.insertRow(0);
-    // let titleCell = newRow.insertCell(0);
-    // let authorCell = newRow.insertCell(1);
-    // titleCell.innerHTML = titleInput.value;
-    // authorCell.innerHTML = authorInput.value;
-    // titleInput.value = '';
-    // authorInput.value = '';
-
     let book = new Book(titleInput.value, authorInput.value);
-    console.log(book);
+    addBook(book);
+    console.log('the book is ' + book);
 
     let newRow = table.insertRow(0);
     let titleCell = newRow.insertCell(0);
     let authorCell = newRow.insertCell(1);
+    
     titleCell.innerHTML = book.title;
     authorCell.innerHTML = book.author;
     titleInput.value = '';
     authorInput.value = '';
+    addBook(book);
+
 });
 
 
@@ -81,4 +67,3 @@ btnAdd.addEventListener('click', () => {
 //     return format;
 // }
 
-console.log(myLibrary);

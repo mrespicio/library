@@ -16,16 +16,14 @@
             <input type="text" name="title" id="title" placeholder="Enter title">
             <input type="text" name="author" id="author" placeholder="Enter author">
             <input type="number" name="pages" id="pages" placeholder="Enter number of pages">
-            <input type="text" name="status" id="status" placeholder="Enter status">
+            <!-- <input type="text" name="status" id="status" placeholder="Enter status"> -->
+            <select name="status" id="status">
+                <option value="not-read">Plan to read read</option>
+                <option value="reading">Reading</option>
+                <option value="completed">Completed</option>
+            </select>
             <button id="add-btn">Add Book</button>
         </div>
-
-        <!-- <div id="add-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">hello</span>
-                <p>some text heyo</p>
-            </div>
-        </div> -->
 
         <table id="table" class="table table-striped">
             <thead>
@@ -38,10 +36,7 @@
                 </tr>
             </thead>
             <tbody id="table-body">
-
-
             </tbody>
-
         </table>
 
     </div> <!-- container -->
