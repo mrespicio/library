@@ -11,34 +11,41 @@
 <body>
 
     <div class="container">
-        <button id="add-btn">Add Book</button>
+        <!-- <button id="add-btn">Add Book</button> -->
+        <div id="addData">
+            <input type="text" name="title" id="title" placeholder="Enter title">
+            <input type="text" name="author" id="author" placeholder="Enter author">
+            <input type="number" name="pages" id="pages" placeholder="Enter number of pages">
+            <input type="text" name="status" id="status" placeholder="Enter status">
+            <button id="add-btn">Add Book</button>
+        </div>
 
-        <div id="add-modal" class="modal">
+        <!-- <div id="add-modal" class="modal">
             <div class="modal-content">
                 <span class="close">hello</span>
                 <p>some text heyo</p>
             </div>
-        </div>
+        </div> -->
 
-        <table>
+        <table id="table" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>Status</th>
-                    <th>Delete</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr>
+                <!-- <!-- <tr>
                     <td>To Kill A Mockingbird</td>
                     <td>Harper Lee</td>
                     <td>281</td>
                     <td>Read</td>
                     <td>Delete</td>
-                </tr>
-                <tr>
+                </tr> -->
+                <!-- <tr>
                     <td>One Flew Over the Cuckoo's Nest</td>
                     <td>Ken Kesey</td>
                     <td>320</td>
@@ -63,7 +70,8 @@
             </tbody>
 
         </table>
-    </div>
+
+    </div> <!-- container -->
 
     
 </body>
