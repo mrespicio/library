@@ -32,24 +32,34 @@ addBook(cuckoo);
 addBook(fahrenheit);
 addBook(micenmen);
 
-let table = document.getElementById('table');
+let table = document.getElementById('table-body');
 console.log(table);
 
 let btnAdd = document.getElementById('add-btn');
 let titleInput = document.getElementById('title');
 let authorInput = document.getElementById('author');
 
+
+
 btnAdd.addEventListener('click', () => {
-    let title = titleInput.value;
-    let author = authorInput.value;
-    let format = ` <tr>
-        <td scope="row">${title}</td>
-        <td>${author}</td>
-    <tr>`;
-    table.innerHTML += format;
+    // let title = titleInput.value;
+    // let author = authorInput.value;
+    // let format = ` <tr>
+    //     <td scope="row">${title}</td>
+    //     <td>${author}</td>
+    // </tr>`;
+    // tableBody.innerHTML += format;
     
+    // titleInput.value = '';
+    // authorInput.value = '';
+    let newRow = table.insertRow(0);
+
+    let titleCell = newRow.insertCell(0);
+    let authorCell = newRow.insertCell(1);
+    titleCell.innerHTML = titleInput.value;
+    authorCell.innerHTML = authorInput.value;
     titleInput.value = '';
-    authorInput.value = '';
+    authorInput.value = ''
 });
 
 // iterate myLibrary
