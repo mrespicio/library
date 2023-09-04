@@ -28,33 +28,43 @@ function addBook(name){
     myLibrary.unshift(name);
 }
 
-addBook(gatsby);
-addBook(cuckoo);
-addBook(fahrenheit);
-addBook(micenmen);
+// addBook(gatsby);
+// addBook(cuckoo);
+// addBook(fahrenheit);
+// addBook(micenmen);
 
 let table = document.getElementById('table-body');
 
 let btnAdd = document.getElementById('add-btn');
 let titleInput = document.getElementById('title');
 let authorInput = document.getElementById('author');
+let pagesInput = document.getElementById('pages');
+let statusInput = document.getElementById('status');
 
 btnAdd.addEventListener('click', () => {
-    let book = new Book(titleInput.value, authorInput.value);
+    let book = new Book(titleInput.value, authorInput.value, 
+        pagesInput.value, statusInput.value);
     addBook(book);
-    console.log('the book is ' + book);
 
-    let newRow = table.insertRow(0);
-    let titleCell = newRow.insertCell(0);
-    let authorCell = newRow.insertCell(1);
-    
+    let row = table.insertRow(0);
+    let titleCell = row.insertCell(0);
+    let authorCell = row.insertCell(1);
+    let pagesCell = row.insertCell(2);
+    let statusCell = row.insertCell(3);
+
     titleCell.innerHTML = book.title;
     authorCell.innerHTML = book.author;
+    pagesCell.innerHTML = book.pages;
+    statusCell.innerHTML = book.status;
+
+    clearFields();
+});
+
+function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
-    addBook(book);
-
-});
+    pagesInput.value = '';
+}
 
 
 // function addRow(obj){
