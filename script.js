@@ -53,27 +53,34 @@ btnAdd.addEventListener('click', () => {
     titleCell.innerHTML = book.title;
     authorCell.innerHTML = book.author;
     pagesCell.innerHTML = book.pages;
-    // statusCell.innerHTML = statusDropdown(book.status);
     statusCell.innerHTML = book.status;
+    actionCell.innerHTML = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> <button onclick="deleteRow()" >Delete</button>`;
 
-    actionCell.innerHTML = `<a>Edit</a> <button class="dlt-btn" onclick="deleteRow(this)" >Delete</button>`
+    let editBtn = document.getElementById('edit-btn');
+    editBtn.addEventListener('click', () => {
+        console.log('edit button clicked');
+        // make all cells in this row contenteditable
+        //titleCell.innerHTML = `<input type="text" name="title" id="title" placeholder="${book.title}" required></input>`;
 
+
+    })
+    //row.insertCell(4).innerHTML = `<button onclick="editRow(this.row)">Edit</button> <button onclick="deleteRow()" >Delete</button>`
+
+    // console.log(row.cells[0]);
+    // console.log(row.cells[1]);
     clearFields();
+
 });
 
-function deleteRow(row){
+function deleteRow(){
     table.deleteRow(this);
 }
 
-// let dltBtns = document.querySelectorAll('.dlt-btn');
-// dltBtns.forEach(btn => {
-//     btn.addEventListener('click', () =>{
-//         //console.log('the row index is : ' + e.rowIndex)
-//         console.log('you clicked on delete');
-//     })
-// }) // delete
+function editRow(){
+    //console.log(row);
+    // row.cells[0].innerHTML = 'test';
+}
 
-// edit button makes fields editable
 
 function clearFields(){
     titleInput.value = '';
