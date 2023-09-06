@@ -32,11 +32,6 @@ let pagesInput = document.getElementById('pages');
 let statusInput = document.getElementById('status');
 
 let dropdown = document.querySelectorAll('.dropdown');
-// dropdown.forEach(() => 
-//     statusInput.addEventListener('change', (option) =>{
-//         console.log(option.target.value);
-//     }))
-
 
 btnAdd.addEventListener('click', () => {
     let book = new Book(titleInput.value, authorInput.value, 
@@ -54,87 +49,28 @@ btnAdd.addEventListener('click', () => {
     authorCell.innerHTML = book.author;
     pagesCell.innerHTML = book.pages;
 
-    // if book.status = value, make option selected
-    //let dropDownSelection = `<select class="dropdown" name="status" id="status">`
-
-    // <select class="dropdown" name="status" id="status">
-    // </select>
-    let dropDownStatus = `
-        <option value="Plan to read">Plan to read</option>
-        <option value="Reading">Reading</option>
-        <option value="Completed">Completed</option>
-    `; 
-        
-    let dropArr = dropDownStatus.split(/\r?\n/);
-
-    dropArr.forEach((item) =>{
-        console.log('the item is ' + item.trim());
-        // if(`<option value=\"${book.status}\">${book.status}</option>` == item.trim()){
-        //     console.log('found plan to read');
-        //     let newSelectionHTML = `<option value=\"${book.status}\" selected>${book.status}</option>
-        //     </select`
-        //     dropDownSelection += newSelectionHTML;
-        // }
-        // else if(item.trim() != '') {
-        //     //console.log('different');
-        // }
-
-        // if(item.trim().charAt(15) == 'P'){
-        //     console.log('this is plan to read')
-        // }
-        // else if(item.trim().charAt(15) == 'R') {
-        //     console.log('this is reading');
-        // }
-        // else if(item.trim().charAt(15) == 'C') {
-        //     console.log('this is completed');
-        // }
-
-        //console.log('the array is ' + item.trim().split(''));
-        //console.log('the char at 15 is ' + item.trim().charAt(15));
-    });
-
- 
-    console.log(dropArr);
-
     let dropDownSelection = `<select class="dropdown" name="status" id="status">`
     if(book.status == 'Plan to read'){
         dropDownSelection += `<option value="Plan to read" selected>Plan to read</option>
             <option value="Reading">Reading</option>
-            <option value="Completed">Completed</option>
-        </select>`
+            <option value="Completed">Completed</option>`
     }
     else if(book.status == 'Reading'){
         dropDownSelection += `<option value="Plan to read">Plan to read</option>
         <option value="Reading" Selected>Reading</option>
-        <option value="Completed">Completed</option>
-    </select>` 
+        <option value="Completed">Completed</option>` 
     }
     else if(book.status == 'Completed'){
         dropDownSelection += `<option value="Plan to read">Plan to read</option>
         <option value="Reading">Reading</option>
-        <option value="Completed" Selected>Completed</option>
-    </select>`
+        <option value="Completed" Selected>Completed</option>`
     }
 
-
-    statusCell.innerHTML = dropDownSelection;
-    // statusCell.innerHTML = `
-    // <select class="dropdown" name="status" id="status">
-    //     <option value="Plan to read">Plan to read</option>
-    //     <option value="Reading">Reading</option>
-    //     <option value="Completed">Completed</option>
-    // </select> `;
+    statusCell.innerHTML = dropDownSelection + `\n </select>`;
+    console.log(statusCell.innerHTML);
 
     actionCell.innerHTML = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> 
         <button onclick="deleteRow()" >Delete</button>`;
-
-    // let editBtn = document.getElementById('edit-btn');
-    // editBtn.addEventListener('click', () => {
-    //     console.log('edit button clicked');
-    //     // make all cells in this row contenteditable
-    //     //titleCell.innerHTML = `<input type="text" name="title" id="title" placeholder="${book.title}" required></input>`;
-
-    // })
 
     clearFields();
 
@@ -149,20 +85,8 @@ function editRow(){
     // row.cells[0].innerHTML = 'test';
 }
 
-
 function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
-}
-
-function statusDropdown(selected){
-    // selected is the status
-    let dropdown = 
-    `<select name="status" id="status">
-        <option value="Plan to read">Plan to read</option>
-        <option value="Reading">Reading</option>
-        <option selected value="Completed">Completed</option>
-    </select>`;
-    return dropdown;
 }
