@@ -5,7 +5,13 @@ Create a library web app where user can track books they've read or plan to read
 
 ## Built With
 ### Technologies
+* HTML
+* CSS
+* JavaScript
+* CSS Bootstrap
 ### Tools
+* Git and GitHub
+* Visual Studio Code
 
 ## New Skills 
 
