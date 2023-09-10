@@ -13,21 +13,15 @@
 
     <div class="container">
         <h1>My Book Library</h1>
-        <!-- <button id="add-btn">Add Book</button> -->
-        <div id="addData">
-            <input type="text" name="title" id="title" placeholder="Enter title" required>
-            <input type="text" name="author" id="author" placeholder="Enter author">
-            <input type="number" name="pages" id="pages" placeholder="Enter number of pages">
-            <!-- <input type="text" name="status" id="status" placeholder="Enter status"> -->
-            <select class="dropdown" name="status" id="status">
-                <option value="Plan to read">Plan to read</option>
-                <option value="Reading">Reading</option>
-                <option value="Completed">Completed</option>
-            </select>
-            <button type="button" id="add-btn">Add Book</button>
-        </div>
+        <button id="add-btn" class="button open-button">Add Book</button>
 
-        <table id="table" class="table table-striped">
+        <dialog id="modal" class="">
+            <h2>this is a modal</h2>
+            <p>it will have the forms to enter info</p>
+            <button class="button close-button">Close modal</button>
+        </dialog>
+
+        <!-- <table id="table" class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Title</th>
@@ -39,7 +33,7 @@
             </thead>
             <tbody id="table-body">
             </tbody>
-        </table>
+        </table> -->
 
     </div> <!-- container -->
 

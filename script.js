@@ -23,70 +23,83 @@ function addBook(name){
 // addBook(fahrenheit);
 // addBook(micenmen);
 
-let table = document.getElementById('table-body');
+const modal = document.querySelector('#modal');
+const openModal = document.querySelector('.open-button')
+const closeModal = document.querySelector('.close-button');
 
-let btnAdd = document.getElementById('add-btn');
-let titleInput = document.getElementById('title');
-let authorInput = document.getElementById('author');
-let pagesInput = document.getElementById('pages');
-let statusInput = document.getElementById('status');
 
-let dropdown = document.querySelectorAll('.dropdown');
+openModal.addEventListener('click', () =>{
+    modal.showModal();
+})
 
-btnAdd.addEventListener('click', () => {
-    let book = new Book(titleInput.value, authorInput.value, 
-        pagesInput.value, statusInput.value);
-    addBook(book);
+closeModal.addEventListener('click', () => {
+    modal.close()
+})
 
-    let row = table.insertRow(0);
-    let titleCell = row.insertCell(0);
-    let authorCell = row.insertCell(1);
-    let pagesCell = row.insertCell(2);
-    let statusCell = row.insertCell(3);
-    let actionCell = row.insertCell(4);
+// let table = document.getElementById('table-body');
 
-    titleCell.innerHTML = book.title;
-    authorCell.innerHTML = book.author;
-    pagesCell.innerHTML = book.pages;
+// let btnAdd = document.getElementById('add-btn');
+// let titleInput = document.getElementById('title');
+// let authorInput = document.getElementById('author');
+// let pagesInput = document.getElementById('pages');
+// let statusInput = document.getElementById('status');
 
-    let dropDownSelection = `<select class="dropdown" name="status" id="status">`
-    if(book.status == 'Plan to read'){
-        dropDownSelection += `<option value="Plan to read" selected>Plan to read</option>
-            <option value="Reading">Reading</option>
-            <option value="Completed">Completed</option>`
-    }
-    else if(book.status == 'Reading'){
-        dropDownSelection += `<option value="Plan to read">Plan to read</option>
-        <option value="Reading" Selected>Reading</option>
-        <option value="Completed">Completed</option>` 
-    }
-    else if(book.status == 'Completed'){
-        dropDownSelection += `<option value="Plan to read">Plan to read</option>
-        <option value="Reading">Reading</option>
-        <option value="Completed" Selected>Completed</option>`
-    }
+// let dropdown = document.querySelectorAll('.dropdown');
 
-    statusCell.innerHTML = dropDownSelection + `\n </select>`;
-    console.log(statusCell.innerHTML);
+// btnAdd.addEventListener('click', () => {
+//     let book = new Book(titleInput.value, authorInput.value, 
+//         pagesInput.value, statusInput.value);
+//     addBook(book);
 
-    actionCell.innerHTML = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> 
-        <button onclick="deleteRow()" >Delete</button>`;
+//     let row = table.insertRow(0);
+//     let titleCell = row.insertCell(0);
+//     let authorCell = row.insertCell(1);
+//     let pagesCell = row.insertCell(2);
+//     let statusCell = row.insertCell(3);
+//     let actionCell = row.insertCell(4);
 
-    clearFields();
+//     titleCell.innerHTML = book.title;
+//     authorCell.innerHTML = book.author;
+//     pagesCell.innerHTML = book.pages;
 
-});
+//     let dropDownSelection = `<select class="dropdown" name="status" id="status">`
+//     if(book.status == 'Plan to read'){
+//         dropDownSelection += `<option value="Plan to read" selected>Plan to read</option>
+//             <option value="Reading">Reading</option>
+//             <option value="Completed">Completed</option>`
+//     }
+//     else if(book.status == 'Reading'){
+//         dropDownSelection += `<option value="Plan to read">Plan to read</option>
+//         <option value="Reading" Selected>Reading</option>
+//         <option value="Completed">Completed</option>` 
+//     }
+//     else if(book.status == 'Completed'){
+//         dropDownSelection += `<option value="Plan to read">Plan to read</option>
+//         <option value="Reading">Reading</option>
+//         <option value="Completed" Selected>Completed</option>`
+//     }
 
-function deleteRow(){
-    table.deleteRow(this);
-}
+//     statusCell.innerHTML = dropDownSelection + `\n </select>`;
+//     console.log(statusCell.innerHTML);
 
-function editRow(){
-    //console.log(row);
-    // row.cells[0].innerHTML = 'test';
-}
+//     actionCell.innerHTML = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> 
+//         <button onclick="deleteRow()" >Delete</button>`;
 
-function clearFields(){
-    titleInput.value = '';
-    authorInput.value = '';
-    pagesInput.value = '';
-}
+//     clearFields();
+
+// });
+
+// function deleteRow(){
+//     table.deleteRow(this);
+// }
+
+// function editRow(){
+//     //console.log(row);
+//     // row.cells[0].innerHTML = 'test';
+// }
+
+// function clearFields(){
+//     titleInput.value = '';
+//     authorInput.value = '';
+//     pagesInput.value = '';
+// }
