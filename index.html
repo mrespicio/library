@@ -15,8 +15,7 @@
 
     <div class="container">
         <h1>My Book Library</h1>
-
-        <button type="button" id="add-btn" class="btn btn-primary open-button" data-bs-toggle="modal" data-bs-target="#form-modal">Add Book</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">Add Book</button>
 
         <div id="form-modal" class="modal fade" tabindex="1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog"> <!-- white box-->
@@ -24,44 +23,52 @@
                 <div class="modal-content"> 
                     <div class="modal-header">
                         <h2 class="modal-title" id="modal-title">Add Book</h2>
+                        <button class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
-                        <input type="text" name="title" id="title" placeholder="Enter title" required>
-                        <input type="text" name="author" id="author" placeholder="Enter author" c>
-                        <input type="number" name="pages" id="pages" placeholder="Enter number of pages">
-                        <!-- <input type="text" name="status" id="status" placeholder="Enter status"> -->
+                        <form action="index.html" method="" class="form">
+                            <label for="input-title" class="form-label">Title</label>
+                            <input type="text" name="title" id="title" placeholder="Enter title">
+                            <br>
+                            <label for="input-author" class="form-label">Author</label>
+                            <input type="text" name="author" id="author" placeholder="Enter author" c>
+                            <br>
+                            <label for="input-pages" class="form-label">Pages</label>
+                            <input type="number" name="pages" id="pages" placeholder="Enter number of pages">
+                            <!-- <input type="text" name="status" id="status" placeholder="Enter status"> -->
+                            <br>
+                            <label for="input-status" class="form-label">Status</label>
+                            <select class="dropdown" name="status" id="status">
+                                <option value="Plan to read">Plan to read</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Completed">Completed</option>
+                            </select>
 
-                        <select class="dropdown" name="status" id="status">
-                            <option value="Plan to read">Plan to read</option>
-                            <option value="Reading">Reading</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                        <button type="button" id="add-btn">Add Book</button>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-bs-dismiss="modal" type="button" id="add-btn">Add Book</button>
+                            </div>
+                        </form>
 
-
-                        <button class="btn-close " data-bs-dismiss="modal" aria-label="Close">Close modal</button>
-                    </div>
-                </div>
+                    </div>  
+                </div> <!-- modal content -->
             </div>
         </div>
         
 
-
-
-
-        <!-- <table id="table" class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Pages</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-            </tbody>
-        </table> -->
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Pages</th>
+                <th scope="col">Status</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
 
     </div> <!-- container -->
 

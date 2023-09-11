@@ -18,21 +18,33 @@ function addBook(name){
     myLibrary.unshift(name); 
 }
 
-// addBook(gatsby);
-// addBook(cuckoo);
-// addBook(fahrenheit);
-// addBook(micenmen);
+addBook(gatsby);
+addBook(cuckoo);
+addBook(fahrenheit);
+addBook(micenmen);
 
 
 // let table = document.getElementById('table-body');
 
-// let btnAdd = document.getElementById('add-btn');
-// let titleInput = document.getElementById('title');
-// let authorInput = document.getElementById('author');
-// let pagesInput = document.getElementById('pages');
-// let statusInput = document.getElementById('status');
+let btnAdd = document.getElementById('add-btn');
+let titleInput = document.getElementById('title');
+let authorInput = document.getElementById('author');
+let pagesInput = document.getElementById('pages');
+let statusInput = document.getElementById('status');
 
 // let dropdown = document.querySelectorAll('.dropdown');
+
+btnAdd.addEventListener('click', () =>{
+    let book = new Book(titleInput.value, authorInput.value, 
+        pagesInput.value, statusInput.value);
+    console.log(book);
+    addBook(book);
+
+})
+
+myLibrary.forEach(item => {
+    console.log(item);
+})
 
 // btnAdd.addEventListener('click', () => {
 //     let book = new Book(titleInput.value, authorInput.value, 
