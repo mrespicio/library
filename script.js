@@ -1,11 +1,12 @@
 // store book objects
 let myLibrary = [];
 
-function Book(title, author, pages, status){
+function Book(title, author, pages, status, index){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.status = status;
+    this.index = index;
 }
 
 let mockingbird = new Book('To Kill A Mockingbird', 'Harper Lee', '281', 'Read');
@@ -18,13 +19,12 @@ function addBook(name){
     myLibrary.unshift(name); 
 }
 
-addBook(gatsby);
-addBook(cuckoo);
-addBook(fahrenheit);
-addBook(micenmen);
+// addBook(gatsby);
+// addBook(cuckoo);
+// addBook(fahrenheit);
+// addBook(micenmen);
 
-
-// let table = document.getElementById('table-body');
+let table = document.getElementById('table-body');
 
 let btnAdd = document.getElementById('add-btn');
 let titleInput = document.getElementById('title');
@@ -36,15 +36,59 @@ let statusInput = document.getElementById('status');
 
 btnAdd.addEventListener('click', () =>{
     let book = new Book(titleInput.value, authorInput.value, 
-        pagesInput.value, statusInput.value);
-    console.log(book);
+        pagesInput.value, statusInput.value, myLibrary.length);
+    //console.log(book);
     addBook(book);
 
+    //console.log('this books index is ' + book.index);
+    // let row = table.insertRow(book.index); //insert bottom
+    let row = table.insertRow(0); //insert top
+    let titleCell = row.insertCell(0);
+    let authorCell = row.insertCell(1);
+    let pagesCell = row.insertCell(2);
+    let statusCell = row.insertCell(3);
+    let actionCell = row.insertCell(4);
+
+    titleCell.innerHTML = book.title;
+    authorCell.innerHTML = book.author;
+    pagesCell.innerHTML = book.pages;
+    statusCell.innerHTML = book.status + book.index;
+
+    //let rowInd = row.rowIndex
+
+    //console.log('the row is number ' + (myLibrary.length - row.rowIndex));
+
+    //console.log('this row is # ' + rowInd);
+
+    let actionButtons = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> 
+    <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
+
+    actionCell.innerHTML = actionButtons;
+    clearFields();
+    
 })
 
-myLibrary.forEach(item => {
-    console.log(item);
-})
+function deleteRow(row){
+    let index = row.parentNode.parentNode.rowIndex - 1;
+    //let num = 
+    console.log(index);
+    //index = myLibrary.length - index;
+    table.deleteRow(index);
+    // remove book from library
+    //myLibrary.splice(index, 1);
+    //console.log('the new array length is ' + myLibrary.length);
+}
+
+function clearFields(){
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+}
+
+
+// myLibrary.forEach(item => {
+//     console.log(item);
+// })
 
 // btnAdd.addEventListener('click', () => {
 //     let book = new Book(titleInput.value, authorInput.value, 
@@ -89,17 +133,3 @@ myLibrary.forEach(item => {
 
 // });
 
-// function deleteRow(){
-//     table.deleteRow(this);
-// }
-
-// function editRow(){
-//     //console.log(row);
-//     // row.cells[0].innerHTML = 'test';
-// }
-
-// function clearFields(){
-//     titleInput.value = '';
-//     authorInput.value = '';
-//     pagesInput.value = '';
-// }
