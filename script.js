@@ -30,13 +30,19 @@ let btnAdd = document.getElementById('add-btn');
 let titleInput = document.getElementById('title');
 let authorInput = document.getElementById('author');
 let pagesInput = document.getElementById('pages');
-let statusInput = document.getElementById('status');
+let statusInput = document.getElementById('btn-check');
 
 // let dropdown = document.querySelectorAll('.dropdown');
 
-btnAdd.addEventListener('click', () =>{
+statusInput.addEventListener('click', (e) =>{
+    // if(statusInput.checked) console.log('checked');
+    // else (console.log('unchecked'));
+    e.stopPropagation();
+})
+
+btnAdd.addEventListener('click', () => {
     let book = new Book(titleInput.value, authorInput.value, 
-        pagesInput.value, statusInput.value, myLibrary.length);
+        pagesInput.value, statusInput.checked, myLibrary.length);
     //console.log(book);
     addBook(book);
 
@@ -52,15 +58,18 @@ btnAdd.addEventListener('click', () =>{
     titleCell.innerHTML = book.title;
     authorCell.innerHTML = book.author;
     pagesCell.innerHTML = book.pages;
-    statusCell.innerHTML = book.status + book.index;
 
-    //let rowInd = row.rowIndex
+    let statusBox = document.createElement('input');
+    statusBox.type = "checkbox";
+    statusBox.name = "";
+    statusBox.id = "btn-check";
+    statusBox.class = "btn-check";
+    statusBox.autocomplete = "off";
+    if(book.status == true) statusBox.setAttribute('checked', 'checked');
 
-    //console.log('the row is number ' + (myLibrary.length - row.rowIndex));
+    statusCell.append(statusBox);
 
-    //console.log('this row is # ' + rowInd);
-
-    let actionButtons = `<!-- <button id="edit-btn" onclick="editRow()">Edit</button> --> 
+    let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
 
     actionCell.innerHTML = actionButtons;
@@ -70,19 +79,20 @@ btnAdd.addEventListener('click', () =>{
 
 function deleteRow(row){
     let index = row.parentNode.parentNode.rowIndex - 1;
-    //let num = 
     console.log(index);
-    //index = myLibrary.length - index;
     table.deleteRow(index);
     // remove book from library
-    //myLibrary.splice(index, 1);
-    //console.log('the new array length is ' + myLibrary.length);
+    myLibrary.splice(index, 1);
 }
 
 function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
+}
+
+function editRow(){
+
 }
 
 
