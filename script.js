@@ -32,21 +32,11 @@ let authorInput = document.getElementById('author');
 let pagesInput = document.getElementById('pages');
 let statusInput = document.getElementById('btn-check');
 
-// let dropdown = document.querySelectorAll('.dropdown');
-
-statusInput.addEventListener('click', (e) =>{
-    // if(statusInput.checked) console.log('checked');
-    // else (console.log('unchecked'));
-    e.stopPropagation();
-})
-
 btnAdd.addEventListener('click', () => {
     let book = new Book(titleInput.value, authorInput.value, 
         pagesInput.value, statusInput.checked, myLibrary.length);
-    //console.log(book);
     addBook(book);
 
-    //console.log('this books index is ' + book.index);
     // let row = table.insertRow(book.index); //insert bottom
     let row = table.insertRow(0); //insert top
     let titleCell = row.insertCell(0);
@@ -61,20 +51,40 @@ btnAdd.addEventListener('click', () => {
 
     let statusBox = document.createElement('input');
     statusBox.type = "checkbox";
-    statusBox.name = "";
-    statusBox.id = "btn-check";
-    statusBox.class = "btn-check";
-    statusBox.autocomplete = "off";
+    statusBox.classList.add('btn-check');
+    statusBox.id = 'btn-check';
     if(book.status == true) statusBox.setAttribute('checked', 'checked');
+    // statusBox.setAttribute('onclick', 'changeStatus()');
+    //if else(book.status == false) 
 
-    statusCell.append(statusBox);
+    statusBox.autocomplete = "off";
+    let readTxt = document.createTextNode('Read');
+    let unreadTxt = document.createTextNode('Not Read');
+
+    let statusLabel = document.createElement('label');
+    statusLabel.htmlFor = 'btn-check';
+    statusLabel.classList.add('btn');
+    statusLabel.classList.add('btn-primary');
+    statusLabel.setAttribute('onclick', 'changeStatus(this)');
+    if(book.status == true) statusLabel.appendChild(readTxt);
+    else if(book.status == false) statusLabel.appendChild(unreadTxt);
+
+
+    statusCell.append(statusBox); // checkbox
+    statusCell.append(statusLabel); // button
 
     let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
-
     actionCell.innerHTML = actionButtons;
+
     clearFields();
-    
+})
+
+let readBtn = document.getElementById('btn-check');
+readBtn.addEventListener('click', () =>{
+    console.log();
+    if(this.checked == true) console.log('already checked')
+    else if(this.checked == false) console.log('not checked')
 })
 
 function deleteRow(row){
@@ -89,6 +99,29 @@ function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
+}
+
+function changeStatus(label){
+    let box = label.previousElementSibling;
+    //console.log('the box is checked? ' + box.checked);
+    let boxStatus = box.checked.toString()
+    let readTxt = document.createTextNode('Read');
+    let unreadTxt = document.createTextNode('Not Read');
+
+    // uncheck box
+    if(boxStatus == 'true'){
+        console.log('checked');
+        box.removeAttribute('checked');
+        label.removeChild(label.lastChild);
+        label.appendChild(unreadTxt);
+    }
+    // check box
+    else if(boxStatus == 'false'){
+        console.log('not checked');
+        box.setAttribute('checked', 'checked');
+        label.removeChild(label.lastChild);
+        label.appendChild(readTxt);
+    } 
 }
 
 function editRow(){
