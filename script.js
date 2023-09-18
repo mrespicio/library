@@ -32,6 +32,9 @@ let authorInput = document.getElementById('author');
 let pagesInput = document.getElementById('pages');
 let statusInput = document.getElementById('btn-check');
 
+let readTxt = document.createTextNode('Read');
+let unreadTxt = document.createTextNode('Not Read');
+
 btnAdd.addEventListener('click', () => {
     let book = new Book(titleInput.value, authorInput.value, 
         pagesInput.value, statusInput.checked, myLibrary.length);
@@ -49,29 +52,29 @@ btnAdd.addEventListener('click', () => {
     authorCell.innerHTML = book.author;
     pagesCell.innerHTML = book.pages;
 
+
+    /* status button */
     let statusBox = document.createElement('input');
     statusBox.type = "checkbox";
     statusBox.classList.add('btn-check');
     statusBox.id = 'btn-check';
-    if(book.status == true) statusBox.setAttribute('checked', 'checked');
-    // statusBox.setAttribute('onclick', 'changeStatus()');
-    //if else(book.status == false) 
-
     statusBox.autocomplete = "off";
-    let readTxt = document.createTextNode('Read');
-    let unreadTxt = document.createTextNode('Not Read');
+    if(book.status == true) statusBox.setAttribute('checked', 'checked');
 
     let statusLabel = document.createElement('label');
     statusLabel.htmlFor = 'btn-check';
     statusLabel.classList.add('btn');
     statusLabel.classList.add('btn-primary');
-    statusLabel.setAttribute('onclick', 'changeStatus(this)');
-    if(book.status == true) statusLabel.appendChild(readTxt);
-    else if(book.status == false) statusLabel.appendChild(unreadTxt);
 
+    if(book.status == true) statusLabel.appendChild(document.createTextNode('Read'));
+    else if(book.status == false) statusLabel.appendChild(document.createTextNode('Not Read'));
+    statusLabel.setAttribute('onclick', 'changeStatus(this)');
+    //statusLabel.setAttribute('onclick', 'changeStatus(this)');
 
     statusCell.append(statusBox); // checkbox
     statusCell.append(statusLabel); // button
+
+
 
     let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
@@ -105,23 +108,26 @@ function changeStatus(label){
     let box = label.previousElementSibling;
     //console.log('the box is checked? ' + box.checked);
     let boxStatus = box.checked.toString()
-    let readTxt = document.createTextNode('Read');
-    let unreadTxt = document.createTextNode('Not Read');
 
     // uncheck box
     if(boxStatus == 'true'){
         console.log('checked');
         box.removeAttribute('checked');
         label.removeChild(label.lastChild);
-        label.appendChild(unreadTxt);
+        label.appendChild(document.createTextNode('Not Read'));
+        // book.status = 'false'
+        return false;
     }
     // check box
     else if(boxStatus == 'false'){
         console.log('not checked');
         box.setAttribute('checked', 'checked');
         label.removeChild(label.lastChild);
-        label.appendChild(readTxt);
+        label.appendChild(document.createTextNode('Read'));
+        // book.status = ' true';
+        return true;
     } 
+    console.log(myLibrary);
 }
 
 function editRow(){
