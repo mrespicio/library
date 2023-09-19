@@ -52,7 +52,6 @@ btnAdd.addEventListener('click', () => {
     authorCell.innerHTML = book.author;
     pagesCell.innerHTML = book.pages;
 
-
     /* status button */
     let statusBox = document.createElement('input');
     statusBox.type = "checkbox";
@@ -69,25 +68,15 @@ btnAdd.addEventListener('click', () => {
     if(book.status == true) statusLabel.appendChild(document.createTextNode('Read'));
     else if(book.status == false) statusLabel.appendChild(document.createTextNode('Not Read'));
     statusLabel.setAttribute('onclick', 'changeStatus(this)');
-    //statusLabel.setAttribute('onclick', 'changeStatus(this)');
 
     statusCell.append(statusBox); // checkbox
     statusCell.append(statusLabel); // button
-
-
 
     let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
     actionCell.innerHTML = actionButtons;
 
     clearFields();
-})
-
-let readBtn = document.getElementById('btn-check');
-readBtn.addEventListener('click', () =>{
-    console.log();
-    if(this.checked == true) console.log('already checked')
-    else if(this.checked == false) console.log('not checked')
 })
 
 function deleteRow(row){
@@ -106,28 +95,20 @@ function clearFields(){
 
 function changeStatus(label){
     let box = label.previousElementSibling;
-    //console.log('the box is checked? ' + box.checked);
-    let boxStatus = box.checked.toString()
+    let boxStatus = box.checked.toString();
 
     // uncheck box
     if(boxStatus == 'true'){
-        console.log('checked');
         box.removeAttribute('checked');
-        label.removeChild(label.lastChild);
-        label.appendChild(document.createTextNode('Not Read'));
-        // book.status = 'false'
+        label.replaceChild(document.createTextNode('Not Read'), label.lastChild)
         return false;
     }
     // check box
     else if(boxStatus == 'false'){
-        console.log('not checked');
         box.setAttribute('checked', 'checked');
-        label.removeChild(label.lastChild);
-        label.appendChild(document.createTextNode('Read'));
-        // book.status = ' true';
+        label.replaceChild(document.createTextNode('Read'), label.lastChild)
         return true;
     } 
-    console.log(myLibrary);
 }
 
 function editRow(){
