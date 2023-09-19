@@ -68,11 +68,9 @@ btnAdd.addEventListener('click', () => {
 
     if(book.status == true) statusLabel.appendChild(document.createTextNode('Read'));
     else if(book.status == false) statusLabel.appendChild(document.createTextNode('Not Read'));
-    //statusLabel.setAttribute('onclick', 'changeStatus(this)');
+
     statusLabel.addEventListener('click', () => {
-        let updatedStatus = changeStatus(statusLabel); 
-        book.status = updatedStatus;
-        //console.log('the book status is now ' + stat);
+        book.status = changeStatus(statusLabel); 
     })
 
     statusCell.append(statusBox); // checkbox
@@ -82,7 +80,6 @@ btnAdd.addEventListener('click', () => {
     let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
     actionCell.innerHTML = actionButtons;
-
     clearFields();
 })
 
@@ -98,13 +95,12 @@ function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
-    //document.getElementById('btn-check').removeAttribute('checked');
+    document.getElementById('btn-check').removeAttribute('checked');
 }
 
 function changeStatus(label){
     let box = label.previousElementSibling;
     let boxStatus = box.checked.toString();
-
     // uncheck box
     if(boxStatus == 'true'){
         box.removeAttribute('checked');
