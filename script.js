@@ -68,8 +68,12 @@ btnAdd.addEventListener('click', () => {
 
     if(book.status == true) statusLabel.appendChild(document.createTextNode('Read'));
     else if(book.status == false) statusLabel.appendChild(document.createTextNode('Not Read'));
-    statusLabel.setAttribute('onclick', 'changeStatus(this)');
-    console.log(statusLabel.onclick);
+    //statusLabel.setAttribute('onclick', 'changeStatus(this)');
+    statusLabel.addEventListener('click', () => {
+        let updatedStatus = changeStatus(statusLabel); 
+        book.status = updatedStatus;
+        //console.log('the book status is now ' + stat);
+    })
 
     statusCell.append(statusBox); // checkbox
     statusCell.append(statusLabel); // button
@@ -94,6 +98,7 @@ function clearFields(){
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
+    //document.getElementById('btn-check').removeAttribute('checked');
 }
 
 function changeStatus(label){
