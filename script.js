@@ -63,14 +63,17 @@ btnAdd.addEventListener('click', () => {
     let statusLabel = document.createElement('label');
     statusLabel.htmlFor = 'btn-check';
     statusLabel.classList.add('btn');
-    statusLabel.classList.add('btn-primary');
+    if(book.status == true) statusLabel.classList.add('btn-success');
+    else if(book.status == false) statusLabel.classList.add('btn-secondary');
 
     if(book.status == true) statusLabel.appendChild(document.createTextNode('Read'));
     else if(book.status == false) statusLabel.appendChild(document.createTextNode('Not Read'));
     statusLabel.setAttribute('onclick', 'changeStatus(this)');
+    console.log(statusLabel.onclick);
 
     statusCell.append(statusBox); // checkbox
     statusCell.append(statusLabel); // button
+    /* status button end */
 
     let actionButtons = `<!-- <button id="edit-btn" class="btn btn-outline-secondary" onclick="editRow()">Edit</button> -->
     <button class="btn btn-danger" onclick="deleteRow(this)" >Delete</button>`;
@@ -101,12 +104,16 @@ function changeStatus(label){
     if(boxStatus == 'true'){
         box.removeAttribute('checked');
         label.replaceChild(document.createTextNode('Not Read'), label.lastChild)
+        label.classList.remove('btn-success')
+        label.classList.add('btn-secondary');
         return false;
     }
     // check box
     else if(boxStatus == 'false'){
         box.setAttribute('checked', 'checked');
         label.replaceChild(document.createTextNode('Read'), label.lastChild)
+        label.classList.remove('btn-secondary')
+        label.classList.add('btn-success')
         return true;
     } 
 }
