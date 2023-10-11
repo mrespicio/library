@@ -27,4 +27,4 @@ Although this initially was a simple project, I decided to add the challenge of 
 
 ## Misc
 This project was created as an assignment for [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library)
-In Progress
+Completed: Sep 2023
